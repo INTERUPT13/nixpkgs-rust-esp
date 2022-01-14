@@ -120,7 +120,10 @@ in stdenv.mkDerivation (rec {
     "-DLLVM_INSTALL_CMAKE_DIR=${placeholder "dev"}/lib/cmake/llvm/"
     "-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
     "-DLLVM_INSTALL_UTILS=ON"  # Needed by rustc
-    "-DLLVM_BUILD_TESTS=ON"
+    # TODO disabled for now but I feel like that option doesn't really
+    #  change shit but who knows 
+    #"-DLLVM_BUILD_TESTS=ON"
+    "-DLLVM_BUILD_TESTS=OFF"
     "-DLLVM_ENABLE_FFI=ON"
     "-DLLVM_ENABLE_RTTI=ON"
     "-DLLVM_HOST_TRIPLE=${stdenv.hostPlatform.config}"
