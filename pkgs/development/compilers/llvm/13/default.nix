@@ -38,6 +38,14 @@ let
     platforms   = lib.platforms.all;
   };
 
+
+  python_with_pkgs = python-packages: with python-packages; [
+    # used during the llvm tests
+    psutil
+  ];
+
+  python3_psutil = python3.withPackages python_with_pkgs;
+
   tools = lib.makeExtensible (tools: let
     callPackage = newScope (tools // { inherit stdenv cmake libxml2 python3 isl release_version version src buildLlvmTools; });
     mkExtraBuildCommands0 = cc: ''
@@ -213,7 +221,7 @@ let
   });
 
   libraries = lib.makeExtensible (libraries: let
-    callPackage = newScope (libraries // buildLlvmTools // { inherit stdenv cmake libxml2 python3 isl release_version version src; });
+    callPackage = newScope (libraries // buildLlvmTools // { inherit stdenv cmake libxml2 python3_psutil isl release_version version src; });
   in {
 
     compiler-rt-libc = callPackage ./compiler-rt {
