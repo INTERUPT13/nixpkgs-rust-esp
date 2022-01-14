@@ -47,7 +47,7 @@ let
   python3_psutil = python3.withPackages python_with_pkgs;
 
   tools = lib.makeExtensible (tools: let
-    callPackage = newScope (tools // { inherit stdenv cmake libxml2 python3 isl release_version version src buildLlvmTools; });
+    callPackage = newScope (tools // { inherit stdenv cmake libxml2 python3_psutil isl release_version version src buildLlvmTools; });
     mkExtraBuildCommands0 = cc: ''
       rsrc="$out/resource-root"
       mkdir "$rsrc"
