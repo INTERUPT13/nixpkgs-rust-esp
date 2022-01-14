@@ -110,6 +110,13 @@ in stdenv.mkDerivation (rec {
   LDFLAGS = optionalString (enableSharedLibraries && !stdenv.isDarwin) "-Wl,--build-id=sha1";
 
   cmakeFlags = with stdenv; [
+    # TODO do this properly and not just hardcode it in here
+
+    # we only need xtensa
+    "-DLLVM_TARGETS_TO_BUILD="
+    # we need to pass this otherwise xtensa does not get build
+    "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=xtensa"
+
     "-DLLVM_INSTALL_CMAKE_DIR=${placeholder "dev"}/lib/cmake/llvm/"
     "-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
     "-DLLVM_INSTALL_UTILS=ON"  # Needed by rustc
