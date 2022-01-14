@@ -18,11 +18,16 @@ let
 in stdenv.mkDerivation rec {
   pname = "rustc";
   inherit version;
-
-  src = fetchurl {
-    url = "https://static.rust-lang.org/dist/rustc-${version}-src.tar.gz";
-    inherit sha256;
+  
+  # TODO 
+  # -there is 1.58.0 now 
+  # -use flakes (maybe)
+  src = fetchGit {
+    url = "https://github.com/esp-rs/rust.git";
+    ref = "esp-1.57.0.0";
+    rev = "c58e258d9b7a1e9c887a4fe9a7d2d83b9edc3419";
   };
+
 
   __darwinAllowLocalNetworking = true;
 
