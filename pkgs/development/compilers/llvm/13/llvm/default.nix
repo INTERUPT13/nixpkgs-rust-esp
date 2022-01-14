@@ -118,7 +118,9 @@ in stdenv.mkDerivation (rec {
     "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=Xtensa"
 
     "-DLLVM_INSTALL_CMAKE_DIR=${placeholder "dev"}/lib/cmake/llvm/"
-    "-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
+    #"-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
+    # TODO remove 
+    "-DCMAKE_BUILD_TYPE=Debug"
     "-DLLVM_INSTALL_UTILS=ON"  # Needed by rustc
     "-DLLVM_BUILD_TESTS=ON"
     "-DLLVM_ENABLE_FFI=ON"
