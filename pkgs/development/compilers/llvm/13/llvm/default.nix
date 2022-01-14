@@ -115,7 +115,7 @@ in stdenv.mkDerivation (rec {
     # we only need xtensa
     "-DLLVM_TARGETS_TO_BUILD="
     # we need to pass this otherwise xtensa does not get build
-    "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=xtensa"
+    "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=Xtensa"
 
     "-DLLVM_INSTALL_CMAKE_DIR=${placeholder "dev"}/lib/cmake/llvm/"
     "-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
