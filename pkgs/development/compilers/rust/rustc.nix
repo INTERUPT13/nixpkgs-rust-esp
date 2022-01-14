@@ -77,7 +77,8 @@ in stdenv.mkDerivation rec {
     # scripts.
     "--target=${concatStringsSep "," ([
       (rust.toRustTargetSpec stdenv.targetPlatform)
-    ] ++ optionals (stdenv.hostPlatform != stdenv.targetPlatform) [
+      # TODO do we have to do this?
+    ] ++ ["xtensa"] ++ optionals (stdenv.hostPlatform != stdenv.targetPlatform) [
       (rust.toRustTargetSpec stdenv.hostPlatform)
     ])}"
 
