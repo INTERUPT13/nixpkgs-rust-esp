@@ -28,6 +28,15 @@ in stdenv.mkDerivation rec {
     rev = "c58e258d9b7a1e9c887a4fe9a7d2d83b9edc3419";
   };
 
+  # vendor deps [ dev purposes only ]
+  # TODO: use those rust platfrom tools or stuff to fetch the deps
+  # instead of manually supplying them
+
+  vendor-src = fetchGit {
+    url = "https://github.com/INTERUPT13/rust-esp32-vendor-src.git";
+    ref = "master";
+    rev = "0a1dee55b28e5dd56ccc836cf919e62fedd7489a";
+  };
 
   __darwinAllowLocalNetworking = true;
 
