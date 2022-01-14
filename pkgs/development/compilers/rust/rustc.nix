@@ -130,7 +130,12 @@ in stdenv.mkDerivation rec {
 
   inherit patches;
 
+  # TODO (line 1) this technically seen belongs in the unpackPhase I guess I will just
+  # do it here so I don't mess up the unpackPhase until I found out how it
+  # exactly works (and if I can append an command without overwriting it completely
   postPatch = ''
+    cp -r ${vendor-src} vendor 
+
     patchShebangs src/etc
 
     ${optionalString (!withBundledLLVM) "rm -rf src/llvm"}
