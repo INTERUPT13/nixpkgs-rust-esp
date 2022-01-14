@@ -109,17 +109,18 @@ in stdenv.mkDerivation (rec {
   # E.g. mesa.drivers use the build-id as a cache key (see #93946):
   LDFLAGS = optionalString (enableSharedLibraries && !stdenv.isDarwin) "-Wl,--build-id=sha1";
 
+  # TODO find out how much we can leave out here to lower size an compile time
   cmakeFlags = with stdenv; [
     # TODO do this properly and not just hardcode it in here
 
-    # we only need xtensa
-    "-DLLVM_TARGETS_TO_BUILD="
+    # we only need xtensa (and I guess x86 for tests)
+    "-DLLVM_TARGETS_TO_BUILD=x86,x86_64"
     # we need to pass this otherwise xtensa does not get build
     "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=Xtensa"
 
     "-DLLVM_INSTALL_CMAKE_DIR=${placeholder "dev"}/lib/cmake/llvm/"
     #"-DCMAKE_BUILD_TYPE=${if debugVersion then "Debug" else "Release"}"
-    # TODO remove 
+    # TODO remove  V (I guees debug is faster to build)
     "-DCMAKE_BUILD_TYPE=Debug"
     "-DLLVM_INSTALL_UTILS=ON"  # Needed by rustc
     "-DLLVM_BUILD_TESTS=ON"
