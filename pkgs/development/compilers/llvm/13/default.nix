@@ -26,11 +26,10 @@ let
   version = if rev != "" then rev-version else "${release_version}${dash-candidate}";
   targetConfig = stdenv.targetPlatform.config;
 
-  src = fetchFromGitHub {
-    owner = "llvm";
-    repo = "llvm-project";
-    rev = if rev != "" then rev else "llvmorg-${version}";
-    sha256 = "0cjl0vssi4y2g4nfr710fb6cdhxmn5r0vis15sf088zsc5zydfhw";
+  src = fetchGit{
+    url = "https://github.com/espressif/llvm-project.git";
+    ref = "xtensa_release_13.0.0";
+    rev = "7b5afb55f5c7959a2903978a25774c75172e8741";
   };
 
   llvm_meta = {
