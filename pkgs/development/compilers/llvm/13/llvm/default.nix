@@ -114,7 +114,7 @@ in stdenv.mkDerivation (rec {
     # TODO do this properly and not just hardcode it in here
 
     # we only need xtensa (and I guess x86 for tests)
-    "-DLLVM_TARGETS_TO_BUILD=x86;x86_64"
+    "-DLLVM_TARGETS_TO_BUILD=X86;X86_64"
     # we need to pass this otherwise xtensa does not get build
     "-DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=Xtensa"
 
