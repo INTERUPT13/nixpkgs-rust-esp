@@ -135,6 +135,7 @@ in stdenv.mkDerivation rec {
   # exactly works (and if I can append an command without overwriting it completely
   postPatch = ''
     ls -la 
+    pwd
     cp -r ${vendor-src} vendor 
 
     patchShebangs src/etc
