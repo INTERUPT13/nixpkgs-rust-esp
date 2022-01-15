@@ -134,6 +134,7 @@ in stdenv.mkDerivation rec {
   # do it here so I don't mess up the unpackPhase until I found out how it
   # exactly works (and if I can append an command without overwriting it completely
   postPatch = ''
+    ls -la 
     cp -r ${vendor-src} vendor 
 
     patchShebangs src/etc
