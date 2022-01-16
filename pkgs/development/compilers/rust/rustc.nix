@@ -80,6 +80,8 @@ in stdenv.mkDerivation rec {
     "--set=build.cargo=${rustPlatform.rust.cargo}/bin/cargo"
     "--enable-rpath"
     "--enable-vendor"
+    # TODO this fails for now
+    "--disable-doc"
     "--build=${rust.toRustTargetSpec stdenv.buildPlatform}"
     "--host=${rust.toRustTargetSpec stdenv.hostPlatform}"
     # std is built for all platforms in --target. When building a cross-compiler
@@ -87,8 +89,9 @@ in stdenv.mkDerivation rec {
     # scripts.
     "--target=${concatStringsSep "," ([
       (rust.toRustTargetSpec stdenv.targetPlatform)
-      # TODO do we have to do this?
-    ] ++ ["xtensa"] ++ optionals (stdenv.hostPlatform != stdenv.targetPlatform) [
+      # we should rather build std later on
+    #] ++ ["xtensa"] ++ optionals (stdenv.hostPlatform != stdenv.targetPlatform) [
+    ]  ++ optionals (stdenv.hostPlatform != stdenv.targetPlatform) [
       (rust.toRustTargetSpec stdenv.hostPlatform)
     ])}"
 
