@@ -26,6 +26,7 @@ in stdenv.mkDerivation rec {
     url = "https://github.com/esp-rs/rust.git";
     ref = "esp-1.57.0.0";
     rev = "c58e258d9b7a1e9c887a4fe9a7d2d83b9edc3419";
+    submodules = true;
   };
 
   # vendor deps [ dev purposes only ]
