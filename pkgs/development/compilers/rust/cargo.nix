@@ -14,7 +14,12 @@ rustPlatform.buildRustPackage {
 
   passthru.rustc = rustc;
 
-  postUnpack = ''
+  postUnpack = let
+    vendor-src = fetchGit {
+      url = "https://github.com/INTERUPT13/rust-esp32-vendor-src.git";
+      ref = "master";
+      rev = "0a1dee55b28e5dd56ccc836cf919e62fedd7489a";
+  }; in ''
     cp -r ${vendor-src} vendor/
   '';
 

@@ -60,6 +60,8 @@ in
       buildRustPackages = (selectRustPackage buildPackages).packages.stable;
       # Analogous to stdenv
       rustPlatform = makeRustPlatform self.buildRustPackages;
+
+      # TODO pass vendor-src from here
       rustc = self.callPackage ./rustc.nix ({
         version = rustcVersion;
         sha256 = rustcSha256;
@@ -77,6 +79,7 @@ in
         pkgsBuildTarget = pkgsBuildTarget // { targetPackages.stdenv = llvmBootstrapForDarwin.stdenv; };
       });
       rustfmt = self.callPackage ./rustfmt.nix { inherit Security; };
+      # TODO pass vendor-src from here
       cargo = self.callPackage ./cargo.nix {
         # Use boot package set to break cycle
         rustPlatform = bootRustPlatform;
