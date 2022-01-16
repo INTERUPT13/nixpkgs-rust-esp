@@ -60,6 +60,7 @@ in
       buildRustPackages = (selectRustPackage buildPackages).packages.stable;
       # Analogous to stdenv
       rustPlatform = makeRustPlatform self.buildRustPackages;
+      rustLibSrc = self.callPackage ./rust-lib-src.nix;
       rustc = self.callPackage ./rustc.nix ({
         version = rustcVersion;
         sha256 = rustcSha256;
