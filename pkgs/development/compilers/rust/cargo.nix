@@ -6,7 +6,7 @@
 
 rustPlatform.buildRustPackage {
   name = "cargo-${rustc.version}";
-  inherit (rustc) version src;
+  inherit (rustc) version src vendor-src;
 
   # the rust source tarball already has all the dependencies vendored, no need to fetch them again
   cargoVendorDir = "vendor";
@@ -14,11 +14,8 @@ rustPlatform.buildRustPackage {
 
   passthru.rustc = rustc;
 
-  buildPhase = ''
-    echo BP
-    ls -la
-    ls -la /build
-    pwd
+  postUnpack = ''
+    cp -r ${vendor-src} vendor/
   '';
 
   # changes hash of vendor directory otherwise
