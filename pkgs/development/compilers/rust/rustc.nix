@@ -81,7 +81,7 @@ in stdenv.mkDerivation rec {
     "--enable-rpath"
     "--enable-vendor"
     # TODO this fails for now
-    "--disable-doc"
+    "--disable-docs"
     "--build=${rust.toRustTargetSpec stdenv.buildPlatform}"
     "--host=${rust.toRustTargetSpec stdenv.hostPlatform}"
     # std is built for all platforms in --target. When building a cross-compiler
