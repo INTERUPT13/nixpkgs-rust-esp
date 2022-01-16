@@ -14,6 +14,11 @@ rustPlatform.buildRustPackage {
 
   passthru.rustc = rustc;
 
+  buildphase = ''
+    ls -la
+    pwd
+  '';
+
   # changes hash of vendor directory otherwise
   dontUpdateAutotoolsGnuConfigScripts = true;
 
