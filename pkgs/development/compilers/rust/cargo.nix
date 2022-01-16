@@ -14,7 +14,8 @@ rustPlatform.buildRustPackage {
 
   passthru.rustc = rustc;
 
-  buildphase = ''
+  buildPhase = ''
+    echo BP
     ls -la
     ls -la /build
     pwd
