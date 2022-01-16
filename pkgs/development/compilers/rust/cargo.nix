@@ -15,6 +15,9 @@ rustPlatform.buildRustPackage {
   passthru.rustc = rustc;
 
   postUnpack = let
+    # TODO hack make sure to pass this via callPackage or shit
+    # and obviously don't use fetchGit in the first place but
+    # generate/vendor deps using nix's rust tools 
     vendor-src = fetchGit {
       url = "https://github.com/INTERUPT13/rust-esp32-vendor-src.git";
       ref = "master";
