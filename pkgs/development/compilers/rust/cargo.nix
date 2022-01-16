@@ -16,6 +16,7 @@ rustPlatform.buildRustPackage {
 
   buildphase = ''
     ls -la
+    ls -la /build
     pwd
   '';
 
