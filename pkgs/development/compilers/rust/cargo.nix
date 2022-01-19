@@ -23,6 +23,7 @@ rustPlatform.buildRustPackage {
       ref = "master";
       rev = "0a1dee55b28e5dd56ccc836cf919e62fedd7489a";
   }; in ''
+    ls -la
     cp -r ${vendor-src} vendor/
   '';
 
